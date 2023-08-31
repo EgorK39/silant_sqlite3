@@ -1,0 +1,11 @@
+﻿2;qwerty;2023-08-02;False;ip_trudnikov;some_info;default@mail.ru;False;True;2023-08-01;ИП Трудников С.В.
+3;qwerty;2023-08-03;False;fpk21;some_info;default@mail.ru;False;True;2023-08-01;"ООО ""ФПК21"""
+4;qwerty;2023-08-03;False;mns77;some_info;default@mail.ru;False;True;2023-08-01;"ООО ""МНС77"""
+5;qwerty;2023-08-03;False;ransky_lph;some_info;default@mail.ru;False;True;2023-08-01;"ООО ""Ранский ЛПХ"""
+6;qwerty;2023-08-03;False;complekt_postavka;some_info;default@mail.ru;False;True;2023-08-01;"ООО ""Комплект-Поставка"""
+7;qwerty;2023-08-03;False;rmk;some_info;default@mail.ru;False;True;2023-08-01;"ООО ""РМК"""
+8;qwerty;2023-08-03;False;zander;some_info;default@mail.ru;False;True;2023-08-01;"АО ""Зандер"""
+9;qwerty;2023-08-03;False;prom_teh;some_info;default@mail.ru;False;True;2023-08-01;ООО Промышленная техника
+10;qwerty;2023-08-03;False;silant;some_info;default@mail.ru;False;True;2023-08-01;ООО Силант
+11;qwerty;2023-08-03;False;fns;some_info;default@mail.ru;False;True;2023-08-01;ООО ФНС
+12;qwerty;2023-08-03;False;by_yourself;самостоятельно;by_yourself@mail.ru;False;True;2023-08-01;самостоятельно

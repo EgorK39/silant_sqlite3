@@ -1,0 +1,207 @@
+@import 'index';
+
+@mixin input {
+  height: 45px;
+  border: solid 2px #163E6C;
+  border-radius: 5px;
+  text-align: center;
+  width: 19rem;
+}
+
+.managerSection {
+  background-color: #EBE6D6;
+  width: 80%;
+  margin: auto;
+  position: relative;
+  top: 15px;
+  border: solid 2px $base-blue;
+  border-radius: 7px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .managerMain {
+    width: 76%;
+
+    .myH {
+
+    }
+
+    .inAndBtn {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-row-gap: 1em;
+
+      .vinInput:nth-child(1) {
+        @include input;
+
+      }
+
+      .myRelative {
+        position: relative;
+
+        .vinInput:nth-child(1n+2) {
+          cursor: pointer;
+          @include input;
+        }
+
+        .searchUl {
+          width: 77%;
+          background: $base-white;
+          position: absolute;
+          top: 50px;
+          border: solid 2px #163E6C;
+          border-radius: 5px;
+          padding: 0;
+          margin: 0;
+          z-index: 1;
+          cursor: pointer;
+
+          li {
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            letter-spacing: 1px;
+
+            &:hover {
+              transform: scale(1.02);
+              color: $base-red;
+            }
+          }
+        }
+      }
+
+      .btnVin {
+
+        outline: none;
+        -webkit-tap-highlight-color: transparent;
+        box-shadow: none;
+        cursor: pointer;
+
+
+        height: 45px;
+        text-align: center;
+        border: solid 2px $base-blue;
+        border-radius: 5px;
+
+        padding: 10px 15px;
+
+        font-size: 12px;
+        line-height: 15px;
+        text-transform: full-width;
+        color: black;
+        background: white;
+        transition: 0.2s;
+        width: 9rem;
+
+        margin-left: 42%;
+
+        &:hover {
+          box-shadow: 0px 2px 8px 2px rgba(141, 150, 178, .3);
+          transform: scale(1.02);
+        }
+      }
+    }
+
+    .btnAddCar {
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+      box-shadow: none;
+      cursor: pointer;
+      height: 45px;
+      text-align: center;
+      border: solid 2px #163E6C;
+      border-radius: 5px;
+      padding: 10px 15px;
+      font-size: 12px;
+      line-height: 15px;
+      text-transform: full-width;
+      color: black;
+      background: white;
+      transition: 0.2s;
+      width: 25rem;
+      margin-top: 15px;
+
+      &:hover {
+        box-shadow: 0px 2px 8px 2px rgba(141, 150, 178, .3);
+        transform: scale(1.02);
+      }
+    }
+
+    .textInCarSearch {
+      background-color: white;
+      margin: auto;
+      border: solid 2px $base-blue;
+      border-radius: 7px;
+      height: 45px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .managerSection {
+
+    .managerMain {
+
+      .inAndBtn {
+        gap: 10px 10px;
+
+        .vinInput:nth-child(1) {
+          width: 17rem;
+        }
+
+        .myRelative {
+
+          .vinInput:nth-child(1n+2) {
+            width: 17rem;
+          }
+        }
+      }
+
+      .btnAddCar {
+        margin: 10px 0;
+      }
+
+    }
+  }
+}
+
+@media screen and (max-width: 825px) {
+  .managerSection {
+    width: 95%;
+
+    .managerMain {
+      width: 90%;
+
+      .inAndBtn {
+        grid-template-columns: 1fr;
+
+        .vinInput:nth-child(1) {
+          width: 16rem;
+        }
+
+        .myRelative {
+
+          .vinInput:nth-child(1n+2) {
+            width: 16rem;
+          }
+        }
+      }
+
+      .btnAddCar {
+        width: 95%;
+      }
+
+      .textInCarSearch {
+        height: 60px;
+        text-align: center;
+      }
+    }
+  }
+}

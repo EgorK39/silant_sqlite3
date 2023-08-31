@@ -1,0 +1,142 @@
+@import 'index';
+
+@mixin myMainDivThema {
+  background-color: white;
+  height: 45px;
+  text-align: center;
+  border: solid 2px $base-blue;
+  border-radius: 5px;
+}
+
+
+.myHeader {
+  margin: 4px 0 10px 0;
+
+  .mainHeaderBlock {
+    background-color: $base-white;
+    width: 80%;
+    margin: auto;
+    position: relative;
+    top: 15px;
+    border: solid 2px $base-blue;
+    border-radius: 7px;
+  }
+
+  .firstHeaderBlock {
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 10px;
+    position: relative;
+
+    .mainThema {
+      &:hover {
+        box-shadow: 0px 2px 8px 2px rgba(141, 150, 178, .3);
+        transform: scale(1.02);
+      }
+
+      .logo {
+        width: 60px;
+
+      }
+
+      cursor: pointer;
+      width: 150px;
+      @include myMainDivThema
+
+
+    }
+
+    .mainThema2 {
+      background-color: white;
+      width: 250px;
+      border-radius: 5px;
+      border: solid 2px $base-blue;
+      height: 45px;
+
+      .ulHeader {
+        display: flex;
+        justify-content: space-around;
+        padding: 0;
+        margin: 0;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+
+        li a {
+          &:hover {
+            transform: scale(1.02);
+            color: $base-red;
+          }
+        }
+      }
+    }
+
+
+    .btnHeader {
+
+      //opacity: 0.6;
+      border: none;
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+      box-shadow: none;
+      cursor: pointer;
+
+      padding: 10px 15px;
+      border-radius: 3px;
+      font-size: 12px;
+      line-height: 15px;
+      text-transform: full-width;
+      color: black;
+      background: white;
+      transition: 0.2s;
+
+      &:hover {
+        box-shadow: 0px 2px 8px 2px rgba(141, 150, 178, .3);
+        transform: scale(1.02);
+      }
+
+      width: 150px;
+      @include myMainDivThema
+    }
+
+
+  }
+
+  .secondHeaderBlock {
+    display: flex;
+    justify-content: center;
+    margin: 6px 0 7px 0;
+
+    .mainThema4 {
+      p {
+        margin: 0;
+        cursor: default;
+      }
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 76%;
+      @include myMainDivThema
+    }
+  }
+}
+
+@media screen and (max-width: 645px) {
+  .myHeader {
+    .firstHeaderBlock {
+      flex-direction: column;
+      align-items: center;
+
+      .mainThem {
+        margin: 0 0 5px 0;
+      }
+
+      .mainThema2 {
+        width: 220px;
+        margin: 0 0 5px 0;
+      }
+    }
+  }
+
+}

@@ -1,0 +1,210 @@
+@import 'index';
+
+.myRec {
+  background-color: #EBE6D6;
+  width: 80%;
+  margin: auto;
+  position: relative;
+  top: 15px;
+  border: solid 2px #163E6C;
+  border-radius: 7px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-bottom: 10px;
+
+
+  .recFiltered {
+    background-color: white;
+    width: 95%;
+    border: solid 2px #163E6C;
+    border-radius: 7px;
+    margin: 10px 0 10px 0;
+
+    .myRecTable {
+      margin: 0 3px 6px 3px;
+      table-layout: fixed;
+      border-collapse: collapse;
+      width: 98%;
+      font-size: 13px;
+
+      tr {
+        text-align: center;
+        position: relative;
+
+        td:nth-child(-n+10) {
+          border-bottom: 2px solid #163E6C;
+          height: 25px;
+          border-right: 2px solid #163E6C;
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
+
+        td:last-child {
+          border-bottom: 2px solid #163E6C;
+          height: 25px;
+          border-right: none;
+          text-overflow: ellipsis;
+          overflow: hidden;
+
+          .col {
+            color: $base-red;
+          }
+        }
+      }
+    }
+  }
+
+  .btnRec {
+    margin: 1px 0 10px 0;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+    box-shadow: none;
+    cursor: pointer;
+    padding: 10px 15px;
+    font-size: 12px;
+    line-height: 15px;
+    text-transform: full-width;
+    color: black;
+    background: white;
+    transition: 0.2s;
+    width: 312px;
+    height: 45px;
+    text-align: center;
+    border: solid 2px #163E6C;
+    border-radius: 5px;
+
+    &:hover {
+      box-shadow: 0px 2px 8px 2px rgba(141, 150, 178, .3);
+      transform: scale(1.02);
+    }
+  }
+}
+
+.add {
+  border: solid 2px #163E6C;
+  border-radius: 7px;
+  margin: auto;
+}
+
+@media screen and (max-width: 1200px) {
+  .myRec1200 {
+    background-color: $base-white;
+    width: 80%;
+    margin: auto;
+    position: relative;
+    top: 15px;
+    border: solid 2px #163E6C;
+    border-radius: 7px;
+
+    //margin-bottom: 10px;
+
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .recFiltered1200 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+      padding: 3px 6px;
+      background-color: #ffffff;
+      width: 95%;
+      margin: auto;
+      position: relative;
+      top: 15px;
+      border: solid 2px #163E6C;
+      border-radius: 7px;
+      margin-bottom: 30px;
+
+      .recMobile {
+        border: solid 2px #163E6C;
+        border-radius: 7px;
+
+        .myTable1200 {
+          margin: 0 3px 6px 3px;
+          table-layout: fixed;
+          border-collapse: collapse;
+          width: 98%;
+
+          tr {
+            text-align: center;
+            position: relative;
+
+            td:first-child {
+              border-bottom: 2px solid #163E6C;
+              height: 25px;
+              border-right: 2px solid #163E6C;
+              text-overflow: ellipsis;
+              overflow: hidden;
+
+              &:hover {
+                overflow: inherit;
+              }
+            }
+
+            td:last-child {
+              border-bottom: 2px solid #163E6C;
+              height: 25px;
+              text-overflow: ellipsis;
+              overflow: hidden;
+
+              &:hover {
+                overflow: inherit;
+                background: white;
+                z-index: 1;
+              }
+
+              .col {
+                color: $base-red;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .btnRec {
+      margin: 1px 0 10px 0;
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+      box-shadow: none;
+      cursor: pointer;
+      padding: 10px 15px;
+      font-size: 12px;
+      line-height: 15px;
+      text-transform: full-width;
+      color: black;
+      background: white;
+      transition: 0.2s;
+      width: 312px;
+      height: 45px;
+      text-align: center;
+      border: solid 2px #163E6C;
+      border-radius: 5px;
+
+      &:hover {
+        box-shadow: 0px 2px 8px 2px rgba(141, 150, 178, .3);
+        transform: scale(1.02);
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width: 376px) {
+  .myRec1200 {
+    width: 95%;
+
+    .recFiltered1200 {
+      grid-template-columns: 1fr;
+      width: 91%;
+    }
+  }
+  .btnRec{
+    width: 90%;
+
+  }
+}

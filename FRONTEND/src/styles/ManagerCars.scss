@@ -1,0 +1,60 @@
+@import 'index';
+
+
+.carNonFilteredMan {
+  background-color: white;
+  width: 95%;
+  border: solid 2px #163E6C;
+  border-radius: 7px;
+  margin: 10px 0 10px 0;
+
+  .myTableNew {
+    margin: 0 3px 6px 3px;
+    table-layout: fixed;
+    border-collapse: collapse;
+    width: 98%;
+    font-size: 14px;
+
+    tr {
+      text-align: center;
+      position: relative;
+
+      td:nth-child(-n+16) {
+        border-bottom: 2px solid #163E6C;
+        height: 25px;
+        border-right: 2px solid #163E6C;
+        text-overflow: ellipsis;
+        overflow: hidden;
+
+        &:hover {
+          overflow: inherit;
+        }
+      }
+
+      td:last-child {
+        border-bottom: 2px solid #163E6C;
+        height: 25px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+
+        &:hover {
+          overflow: inherit;
+          background: white;
+          z-index: 1;
+        }
+
+
+        //&::after {
+        //  content: "";
+        //  height: 20px;
+        //  border-right: 2px solid #163E6C;
+        //  position: absolute;
+        //  right: -15px;
+        //  top: 12px;
+        //  opacity: 0.3;
+        //}
+      }
+    }
+
+  }
+}

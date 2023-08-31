@@ -1,0 +1,192 @@
+@import 'index';
+
+.carNonFiltered {
+  background-color: white;
+  width: 95%;
+  border: solid 2px #163E6C;
+  border-radius: 7px;
+  margin: 10px 0 10px 0;
+
+
+  .myTable {
+    margin: 0 3px 6px 3px;
+    table-layout: fixed;
+    border-collapse: collapse;
+    width: 98%;
+    font-size: 13px;
+
+    tr {
+      text-align: center;
+      position: relative;
+
+      td:nth-child(-n+16) {
+        border-bottom: 2px solid #163E6C;
+        height: 25px;
+        border-right: 2px solid #163E6C;
+        text-overflow: ellipsis;
+        overflow: hidden;
+
+        &:hover {
+          overflow: inherit;
+        }
+      }
+
+      td:last-child {
+        border-bottom: 2px solid #163E6C;
+        height: 25px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+
+        &:hover {
+          overflow: inherit;
+          background: white;
+          z-index: 1;
+        }
+
+
+        //&::after {
+        //  content: "";
+        //  height: 20px;
+        //  border-right: 2px solid #163E6C;
+        //  position: absolute;
+        //  right: -15px;
+        //  top: 12px;
+        //  opacity: 0.3;
+        //}
+      }
+    }
+
+  }
+
+
+}
+
+
+.carNonFilteredSmpl {
+  background-color: white;
+  width: 95%;
+  border: solid 2px #163E6C;
+  border-radius: 7px;
+  margin: 10px 0 10px 0;
+
+
+  .myTableSmpl {
+    margin: 0 3px 6px 3px;
+    table-layout: fixed;
+    border-collapse: collapse;
+    width: 98%;
+    font-size: 13px;
+
+    tr {
+      text-align: center;
+      position: relative;
+
+      td:nth-child(-n+9) {
+        border-bottom: 2px solid #163E6C;
+        height: 25px;
+        border-right: 2px solid #163E6C;
+        text-overflow: ellipsis;
+        overflow: hidden;
+
+        &:hover {
+          overflow: inherit;
+        }
+      }
+
+      td:last-child {
+        border-bottom: 2px solid #163E6C;
+        height: 25px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+
+        &:hover {
+          overflow: inherit;
+          background: white;
+          z-index: 1;
+        }
+      }
+    }
+
+  }
+
+
+}
+
+@media screen and (max-width: 1200px) {
+  .carNonFiltered1200Cars {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    padding: 3px 6px;
+    background-color: #ffffff;
+    width: 95%;
+    margin: auto;
+    position: relative;
+    top: 15px;
+    border: solid 2px #163E6C;
+    border-radius: 7px;
+    margin-bottom: 30px;
+
+    .tableDiv1200Cars {
+      border: solid 2px #163E6C;
+      border-radius: 7px;
+
+      .myTable1200Cars {
+        margin: 0 3px 6px 3px;
+        table-layout: fixed;
+        border-collapse: collapse;
+        width: 98%;
+
+        tr {
+          text-align: center;
+          position: relative;
+
+          td:first-child {
+            border-bottom: 2px solid #163E6C;
+            height: 25px;
+            border-right: 2px solid #163E6C;
+            text-overflow: ellipsis;
+            overflow: hidden;
+
+            &:hover {
+              overflow: inherit;
+            }
+          }
+
+          td:last-child {
+            border-bottom: 2px solid #163E6C;
+            height: 25px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+
+            &:hover {
+              overflow: inherit;
+              background: white;
+              z-index: 1;
+            }
+
+          }
+        }
+      }
+
+
+    }
+  }
+}
+
+
+@media screen and (max-width: 955px) {
+
+  .carNonFiltered1200Cars {
+    grid-template-columns: 1fr 1fr;
+
+  }
+}
+
+@media screen and (max-width: 376px) {
+  .carNonFiltered1200Cars {
+    grid-template-columns: 1fr;
+    width: 90%;
+  }
+
+}

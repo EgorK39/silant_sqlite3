@@ -1,0 +1,160 @@
+@import 'index';
+
+@mixin input {
+  height: 45px;
+  border: solid 2px #163E6C;
+  border-radius: 5px;
+  text-align: center;
+  width: 19rem;
+  margin-top: 10px;
+}
+
+@mixin err {
+  color: #FF5959;
+  text-align: center;
+  margin: 5px 0;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  font-size: 14px;
+}
+
+.modalBackground {
+  background: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  z-index: 2;
+  top: 0;
+  right: 0;
+
+  .modalActive {
+    position: absolute;
+    width: 320px;
+    height: 495px;
+    top: calc(50% - 250px);
+    left: calc(50% - 180px);
+    border-radius: 10px;
+    background-color: $base-white;
+    cursor: default;
+    padding: 40px 20px;
+
+    .modalClose {
+      position: absolute;
+      right: 30px;
+      top: 5px;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+
+      img {
+        margin: 3px;
+        width: 50px;
+        height: 50px;
+      }
+    }
+
+    .modalWindow {
+      position: relative;
+      top: 60px;
+
+      .loginDiv {
+        .vinInput {
+          @include input;
+        }
+
+        .authErr {
+          @include err;
+        }
+      }
+
+      .passwordDiv {
+        margin-top: 20px;
+
+        .vinInput {
+          @include input;
+        }
+
+        .authErr {
+          @include err;
+        }
+      }
+
+      .btnLogin {
+        outline: none;
+        -webkit-tap-highlight-color: transparent;
+        box-shadow: none;
+        cursor: pointer;
+
+
+        height: 45px;
+        text-align: center;
+        border: solid 2px $base-blue;
+        border-radius: 5px;
+
+        padding: 10px 15px;
+
+        font-size: 12px;
+        line-height: 15px;
+        text-transform: full-width;
+        color: black;
+        background: white;
+        transition: 0.2s;
+        width: 9rem;
+
+        position: relative;
+        top: 35px;
+        left: 50%;
+        transform: translate(-50%);
+
+        &:hover {
+          box-shadow: 0px 2px 8px 2px rgba(141, 150, 178, .3);
+          transform: scale(1.02) translate(-50%);
+
+        }
+
+      }
+
+      .authEr {
+        top: 270px;
+        width: 280px;
+        font-size: 16px;
+        @include err;
+
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width: 350px) {
+  .modalBackground {
+    .modalActive {
+      position: absolute;
+      width: 290px;
+      height: 495px;
+      top: calc(50% - 270px);
+      left: calc(50% - 155px);
+      border-radius: 10px;
+      background-color: #EBE6D6;
+      cursor: default;
+      padding: 40px 10px;
+
+      .modalWindow {
+        .loginDiv {
+          .vinInput {
+            width: 17rem;
+          }
+        }
+
+        .passwordDiv {
+          .vinInput {
+            width: 17rem;
+          }
+        }
+      }
+    }
+  }
+}
+

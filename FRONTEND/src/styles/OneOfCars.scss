@@ -1,0 +1,104 @@
+@import 'index';
+@import 'Cars';
+
+
+.myDetailCar {
+  background-color: #EBE6D6;
+  width: 80%;
+  margin: auto;
+  position: relative;
+  top: 15px;
+  border: solid 2px #163E6C;
+  border-radius: 7px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .btnOneOfCars {
+    margin: 1px 0 10px 0;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+    box-shadow: none;
+    cursor: pointer;
+    padding: 10px 15px;
+    font-size: 12px;
+    line-height: 15px;
+    text-transform: full-width;
+    color: black;
+    background: white;
+    transition: 0.2s;
+    width: 310px;
+    height: 45px;
+    text-align: center;
+    border: solid 2px #163E6C;
+    border-radius: 5px;
+
+    &:hover {
+      box-shadow: 0px 2px 8px 2px rgba(141, 150, 178, .3);
+      transform: scale(1.02);
+    }
+  }
+}
+
+
+@media screen and (max-width: 1200px) {
+  .myDetailCar {
+    .carNonFiltered1200 {
+      background-color: white;
+      width: 95%;
+      border: solid 2px #163E6C;
+      border-radius: 7px;
+      margin: 10px 0 10px 0;
+      display: flex;
+      justify-content: center;
+
+      .tableDiv1200 {
+        border: solid 2px #163E6C;
+        border-radius: 7px;
+        width: 350px;
+
+        .myTable {
+          margin: 0 3px 6px 3px;
+          table-layout: fixed;
+          border-collapse: collapse;
+          width: 98%;
+
+          tr {
+            text-align: center;
+            position: relative;
+
+            td:first-child {
+              border-bottom: 2px solid #163E6C;
+              height: 25px;
+              border-right: 2px solid #163E6C;
+              text-overflow: ellipsis;
+              overflow: hidden;
+
+              &:hover {
+                overflow: inherit;
+              }
+            }
+
+            td:last-child {
+              border-bottom: 2px solid #163E6C;
+              height: 25px;
+              text-overflow: ellipsis;
+              overflow: hidden;
+
+              &:hover {
+                overflow: inherit;
+                background: white;
+                z-index: 1;
+              }
+
+
+            }
+          }
+
+        }
+      }
+    }
+  }
+
+}

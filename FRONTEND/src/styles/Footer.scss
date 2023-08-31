@@ -1,0 +1,76 @@
+@import 'index';
+
+
+@mixin footerBlock {
+  background-color: white;
+  width: 250px;
+  border-radius: 5px;
+  border: solid 2px $base-blue;
+  height: 45px;
+}
+
+.myFooter {
+  .mainFooter {
+    background-color: $base-white;
+    width: 80%;
+    margin: auto;
+    position: relative;
+    top: 15px;
+    border: solid 2px $base-blue;
+    border-radius: 7px;
+    display: flex;
+    justify-content: space-evenly;
+    height: 100px;
+    align-items: center;
+
+    .firstDivBlock {
+      @include footerBlock;
+
+      .ulHeader {
+        display: flex;
+        justify-content: space-around;
+        padding: 0;
+        margin: 0;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+
+        li a {
+          &:hover {
+            transform: scale(1.02);
+            color: $base-red;
+          }
+        }
+      }
+    }
+
+    .secondDivBlock {
+      @include footerBlock;
+
+      p {
+        text-align: center;
+        cursor: default;
+      }
+
+    }
+  }
+}
+
+
+@media screen and (max-width: 645px) {
+  .myFooter {
+    .mainFooter {
+      flex-direction: column;
+
+      .firstDivBlock {
+        width: 225px;
+        margin: 5px;
+      }
+
+      .secondDivBlock {
+        width: 225px;
+        margin: 5px;
+      }
+    }
+  }
+}
