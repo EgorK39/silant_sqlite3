@@ -372,7 +372,18 @@ export default function CreateRec(props) {
                 break;
         }
     }
+    useEffect(() => {
+        if (Date.parse(dateOfRejectionMod) >= Date.parse(dateOfRestorationMod)) {
+            console.log(dateOfRejectionMod)
+            console.log(Date.parse(dateOfRejectionMod))
 
+            console.log(dateOfRestorationMod)
+            console.log(Date.parse(dateOfRestorationMod))
+
+            setDateOfRejectionMod(new Date(Date.parse(dateOfRestorationMod) - (1000 * 60 * 60 * 24)).toISOString().substring(0, 10))
+        }
+
+    }, [dateOfRestorationMod, dateOfRejectionMod])
     return (
         <>
             <div

@@ -557,7 +557,7 @@ export default function CreateTo(props) {
                         }}
                         className={'btnVin'}
                         disabled={!isReady}
-                    >Добавить машину
+                    >Добавить ТО
                     </button>
 
                 </>

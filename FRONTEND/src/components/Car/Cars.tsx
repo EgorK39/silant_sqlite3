@@ -25,7 +25,6 @@ export default function Cars(props) {
     const isMobile = useMediaQuery({
         query: '(max-width: 1200px)'
     })
-
     if (isMobile) {
         if (props.allCars && tokenAccess && (props.client.length > 1) && (props.company.length > 1)) {
             return (

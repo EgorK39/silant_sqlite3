@@ -4,6 +4,8 @@ import {useState, useEffect, lazy} from "react";
 import Cars from './Cars';
 import {Outlet, useNavigate} from "react-router-dom";
 import NavBar from "../Header/NavBar";
+import {ThreeDots} from 'react-loader-spinner';
+
 
 export default function CarSearch(props) {
     const [vin, setVin] = useState('');
@@ -55,7 +57,10 @@ export default function CarSearch(props) {
                     method: 'GET',
                 })
                     .then(async res => {
-                        setTechnic(await res.json())
+                        return await res.json()
+                    })
+                    .then(data => {
+                        setTechnic(data.technic)
                     })
                     .catch(err =>
                         console.log(err))
@@ -65,7 +70,10 @@ export default function CarSearch(props) {
                     method: 'GET',
                 })
                     .then(async res => {
-                        setEngine(await res.json())
+                        return await res.json()
+                    })
+                    .then(data => {
+                        setEngine(data.engine)
                     })
                     .catch(err =>
                         console.log(err))
@@ -76,7 +84,10 @@ export default function CarSearch(props) {
                     method: 'GET',
                 })
                     .then(async res => {
-                        setTransmission(await res.json())
+                        return await res.json()
+                    })
+                    .then(data => {
+                        setTransmission(data.transmission)
                     })
                     .catch(err =>
                         console.log(err))
@@ -86,7 +97,10 @@ export default function CarSearch(props) {
                     method: 'GET',
                 })
                     .then(async res => {
-                        setDrivingbridge(await res.json())
+                        return await res.json()
+                    })
+                    .then(data => {
+                        setDrivingbridge(data.drivingbridge)
                     })
                     .catch(err =>
                         console.log(err))
@@ -96,7 +110,10 @@ export default function CarSearch(props) {
                     method: 'GET',
                 })
                     .then(async res => {
-                        setControlledbridge(await res.json())
+                        return await res.json()
+                    })
+                    .then(data => {
+                        setControlledbridge(data.controlledbridge)
                     })
                     .catch(err =>
                         console.log(err))
@@ -283,19 +300,19 @@ export default function CarSearch(props) {
         return value.replace(/\s/g, "").match(/.{1,3}/g)?.join(" ") || ""
     }
     const myEngineToggleFunc = (target) => {
-        const engineId = engine.engine.find(engine => engine.name === target.textContent).id
+        const engineId = engine.find(engine => engine.name === target.textContent).id
         setEngineMod(engineId)
     }
     const myTransmissionToggleFunc = (target) => {
-        const transmissionId = transmission.transmission.find(transmission => transmission.name === target.textContent).id
+        const transmissionId = transmission.find(transmission => transmission.name === target.textContent).id
         setTransmissionMod(transmissionId)
     }
     const myDrivingbridgeToggleFunc = (target) => {
-        const drivingbridgeId = drivingbridge.drivingbridge.find(drivingbridge => drivingbridge.name === target.textContent).id
+        const drivingbridgeId = drivingbridge.find(drivingbridge => drivingbridge.name === target.textContent).id
         setdrivingbridgeMod(drivingbridgeId)
     }
     const myControlledbridgeToggleFunc = (target) => {
-        const controlledbridgeId = controlledbridge.controlledbridge.find(controlledbridge => controlledbridge.name === target.textContent).id
+        const controlledbridgeId = controlledbridge.find(controlledbridge => controlledbridge.name === target.textContent).id
         setControlledbridgeMod(controlledbridgeId)
     }
     const myEngineFunc = (target) => {
@@ -389,7 +406,7 @@ export default function CarSearch(props) {
                                 className={"searchUl"}
 
                             >
-                                {engine ? engine.engine.map((el, i) =>
+                                {engine ? engine.map((el, i) =>
                                     <li key={el.id}>{el.name}</li>
                                 ) : ''}
                             </ul>
@@ -427,7 +444,7 @@ export default function CarSearch(props) {
                                     setToggleTransmissionTwo(false)
                                 }}
                                 className={"searchUl"}>
-                                {transmission ? transmission.transmission.map((el, i) =>
+                                {transmission ? transmission.map((el, i) =>
                                     <li key={el.id}>{el.name}</li>
                                 ) : ''}
                             </ul>
@@ -467,7 +484,7 @@ export default function CarSearch(props) {
                                     setToggleDrivingbridgeTwo(false)
                                 }}
                                 className={"searchUl"}>
-                                {drivingbridge ? drivingbridge.drivingbridge.map((el, i) =>
+                                {drivingbridge ? drivingbridge.map((el, i) =>
                                     <li key={el.id}>{el.name}</li>
                                 ) : ''}
                             </ul>
@@ -505,7 +522,7 @@ export default function CarSearch(props) {
                                     setToggleControlledbridgeTwo(false)
                                 }}
                                 className={"searchUl"}>
-                                {controlledbridge ? controlledbridge.controlledbridge.map((el, i) =>
+                                {controlledbridge ? controlledbridge.map((el, i) =>
                                     <li key={el.id}>{el.name}</li>
                                 ) : ''}
                             </ul>
@@ -524,27 +541,42 @@ export default function CarSearch(props) {
                 </div>
             </div>
             {
-                isFiltered ? (
+                (isFiltered && allCars && technic.length > 1 && engine.length > 1 &&
+                    transmission.length > 1 && drivingbridge.length > 1 &&
+                    controlledbridge.length > 1) ? (
                     <Cars allCars={filteredCar}
-                          technic={technic.technic}
-                          engine={engine.engine}
-                          transmission={transmission.transmission}
-                          drivingbridge={drivingbridge.drivingbridge}
-                          controlledbridge={controlledbridge.controlledbridge}
+                          technic={technic}
+                          engine={engine}
+                          transmission={transmission}
+                          drivingbridge={drivingbridge}
+                          controlledbridge={controlledbridge}
                           client={client}
                           company={company}
                     />
-                ) : (
-                    <Cars allCars={allCars}
-                          technic={technic.technic}
-                          engine={engine.engine}
-                          transmission={transmission.transmission}
-                          drivingbridge={drivingbridge.drivingbridge}
-                          controlledbridge={controlledbridge.controlledbridge}
-                          client={client}
-                          company={company}
+                ) : (technic.length > 1 && engine.length > 1 &&
+                    transmission.length > 1 && drivingbridge.length > 1 &&
+                    controlledbridge.length > 1 && allCars) ?
+
+                    (
+                        <Cars allCars={allCars}
+                              technic={technic}
+                              engine={engine}
+                              transmission={transmission}
+                              drivingbridge={drivingbridge}
+                              controlledbridge={controlledbridge}
+                              client={client}
+                              company={company}
+                        />
+                    ) :
+                    <ThreeDots
+                        height="70"
+                        width="45"
+                        radius="9"
+                        color="#163E6C"
+                        ariaLabel="three-dots-loading"
+                        visible={true}
+                        wrapperStyle={{justifyContent: 'center'}}
                     />
-                )
             }
         </>
     )

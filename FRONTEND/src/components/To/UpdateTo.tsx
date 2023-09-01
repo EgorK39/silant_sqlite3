@@ -311,6 +311,37 @@ export default function UpdateTo(props) {
     }
     const goBack = () => navigate(-1);
 
+    const [today, setToday] = useState<string>('')
+    const [dateErrorDateOfTo, setDateErrorDateOfTo] = useState<string>('')
+    const [dateErrorDateOfOrder, setDateErrorDateOfOrder] = useState<string>('')
+
+
+    useEffect(() => {
+        setToday(new Date().toISOString().substring(0, 10))
+    }, [])
+    const changeDate = (target) => {
+        switch (target.name) {
+            case 'dateOfTo':
+                if (Date.parse(target.value) > Date.parse(today)) {
+                    setDateErrorDateOfTo('Введите корректные данные')
+                    setDateOfToMod('')
+                } else {
+                    setDateOfToMod(target.value)
+                    setDateErrorDateOfTo('')
+                }
+                break;
+            case 'dateOfOrder':
+                if (Date.parse(target.value) > Date.parse(today)) {
+                    setDateErrorDateOfOrder('Введите корректные данные')
+                    setDateOfOrderMod('')
+                } else {
+                    setDateOfOrderMod(target.value)
+                    setDateErrorDateOfOrder('')
+                }
+                break;
+        }
+    }
+
     return (
         <div
             className={'carEdit'}>{(to && (type.length > 1) && (company.length > 1) && (autos.length > 1)) ? (
@@ -373,11 +404,14 @@ export default function UpdateTo(props) {
                                placeholder={'Дата проведения ТО'}
                                maxLength={25}
                                onChange={event => {
-                                   setDateOfToMod(event.target.value)
+                                   changeDate(event.target)
                                }}
                                type={"date"}
 
                         />
+                        {dateErrorDateOfTo && (
+                            <p className={'errorP'}>{dateErrorDateOfTo}</p>
+                        )}
                     </div>
                     <div className={'carEditDiv'}>
                         <p>Наработка, м/час</p>
@@ -418,11 +452,14 @@ export default function UpdateTo(props) {
                                placeholder={'Дата заказ-наряда'}
                                maxLength={25}
                                onChange={event => {
-                                   setDateOfOrderMod(event.target.value)
+                                   changeDate(event.target)
                                }}
                                type={"date"}
 
                         />
+                        {dateErrorDateOfOrder && (
+                            <p className={'errorP'}>{dateErrorDateOfOrder}</p>
+                        )}
                     </div>
 
                     <div className={'carEditDiv'}>
