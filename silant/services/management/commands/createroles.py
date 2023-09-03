@@ -19,6 +19,7 @@ class Command(BaseCommand):
                     print(i.username)
                     print(f'gr:{i.groups.filter(name="manager").exists()}')
                     print(f'gr:{i.groups.all()}')
+                    print(i.is_active)
 
                     # TODO < объект_пользователя >.groups.filter(name__in=['Имя_группы_1', 'Имя_группы_2']).exists() TODO
 
@@ -57,12 +58,16 @@ class Command(BaseCommand):
                 if i.username in clients_list:
                     print(f'clients_list: {i.username}')
                     i.groups.add(clientGr)
+                    i.is_active = True
+                    i.set_password("qwerty")
                     i.save()
                     # print(f'clients_list groups: {i.groups.name}')
 
                 elif i.username in company_list:
                     print(f'company_list: {i.username}')
                     i.groups.add(comGr)
+                    i.is_active = True
+                    i.set_password("qwerty")
                     i.save()
                     # print(f'company_list groups: {i.groups.name}')
 
