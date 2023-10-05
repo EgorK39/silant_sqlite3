@@ -31,7 +31,9 @@ import Create from "./ForManager/Services/Create";
 
 export default function App(props) {
 
-    const defaultURL = 'http://127.0.0.1:8000/api/v1/'
+//     const defaultURL = 'http://127.0.0.1:8000/api/v1/'
+    const defaultURL = 'http://127.0.0.1:1337/api/v1/'
+
 
     const [isAuthenticated, setIsAuthenticated] = useState(false)
     const [userName, setUserName] = useState<string>('')
