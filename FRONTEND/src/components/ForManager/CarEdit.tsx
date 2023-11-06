@@ -1,7 +1,8 @@
 import * as React from 'react';
 import '../../styles/CarEdit.scss';
-import {Link, useNavigate, useParams} from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 import {useEffect, useState} from 'react';
+import * as service from '../Services/ServicesForManager';
 
 export default function CarEdit(props) {
     const [car, setCar] = useState(null);
@@ -63,137 +64,192 @@ export default function CarEdit(props) {
     const {id} = useParams();
     const navigate = useNavigate();
 
+
     // TODO
 
     useEffect(() => {
-        console.log(isReady)
+        // console.log(isReady)
         if (isReady) {
             const token = JSON.parse(localStorage.getItem('token'))
-            console.log(isReady)
-            if (!client.length) {
-                console.log('client')
+            // console.log(isReady)
 
-                fetch(props.defaultURL + 'services/client', {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token.access}`
-                    },
-                })
-                    .then(async res => {
-                        return await res.json()
-                    })
-                    .then(data => {
-                        setClient(data)
-                    })
-                    .catch(err =>
-                        console.log(err))
-            }
-            if (!company.length) {
-                fetch(props.defaultURL + 'services/company', {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token.access}`
-                    },
-                })
-                    .then(async res => {
-                        return await res.json()
-                    })
-                    .then(data => {
-                        setCompany(data)
-                    })
-                    .catch(err =>
-                        console.log(err))
-            }
-            if (!technic.length) {
-                console.log('technic')
-                fetch(props.defaultURL + 'services/technic', {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token.access}`
-                    },
-                })
-                    .then(async res => {
-                        return await res.json()
-                    })
-                    .then(data => {
-                        setTechnic(data)
+            const client1 = service.getServices(client, props.defaultURL, token.access, 'client');
+            // console.log(client1);
+            const company1 = service.getServices(company, props.defaultURL, token.access, 'company');
+            // console.log(company1);
+            const technic1 = service.getServices(technic, props.defaultURL, token.access, 'technic');
+            // console.log(technic1);
+            const engine1 = service.getServices(engine, props.defaultURL, token.access, 'engine');
+            // console.log(engine1);
+            const transmission1 = service.getServices(transmission, props.defaultURL, token.access, 'transmission');
+            // console.log(transmission1);
+            const drivingbridge1 = service.getServices(drivingbridge, props.defaultURL, token.access, 'drivingbridge');
+            // console.log(drivingbridge1);
+            const controlledbridge1 = service.getServices(controlledbridge, props.defaultURL, token.access, 'controlledbridge');
+            // console.log(controlledbridge1);
 
-                    })
-                    .catch(err =>
-                        console.log(err))
-            }
+            const printService = (service, type) => {
+                service.then((serviceName) => {
+                    switch (type) {
+                        case 'technic':
+                            setTechnic(serviceName)
+                            break;
+                        case 'engine':
+                            setEngine(serviceName)
+                            break;
+                        case 'transmission':
+                            setTransmission(serviceName)
+                            break;
+                        case 'drivingbridge':
+                            setDrivingbridge(serviceName)
+                            break;
+                        case 'controlledbridge':
+                            setControlledbridge(serviceName)
+                            break;
+                        case 'client':
+                            setClient(serviceName)
+                            break;
+                        case 'company':
+                            setCompany(serviceName)
+                            break;
+                    }
 
-            if (!engine.length) {
-                fetch(props.defaultURL + 'services/engine', {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token.access}`
-                    },
-                })
-                    .then(async res => {
-                        return await res.json()
-                    })
-                    .then(data => {
-                        setEngine(data)
-                    })
-                    .catch(err =>
-                        console.log(err))
-            }
-            if (!transmission.length) {
-                fetch(props.defaultURL + 'services/transmission', {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token.access}`
-                    },
-                })
-                    .then(async res => {
-                        return await res.json()
-                    })
-                    .then(data => {
-                        setTransmission(data)
-                    })
-                    .catch(err =>
-                        console.log(err))
-            }
-            if (!drivingbridge.length) {
-                fetch(props.defaultURL + 'services/drbridge', {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token.access}`
-                    },
-                })
-                    .then(async res => {
-                        return await res.json()
-                    })
-                    .then(data => {
-                        setDrivingbridge(data)
-                    })
-                    .catch(err =>
-                        console.log(err))
-            }
-            if (!controlledbridge.length) {
-                fetch(props.defaultURL + 'services/cobridge', {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token.access}`
-                    },
-                })
-                    .then(async res => {
-                        return await res.json()
-                    })
-                    .then(data => {
-                        setControlledbridge(data)
-                    })
-                    .catch(err =>
-                        console.log(err))
-            }
+                });
+            };
+
+            printService(client1, 'client');
+            printService(company1, 'company');
+            printService(technic1, 'technic');
+            printService(engine1, 'engine');
+            printService(transmission1, 'transmission');
+            printService(drivingbridge1, 'drivingbridge');
+            printService(controlledbridge1, 'controlledbridge');
+
+
+            // if (!client.length) {
+            //     console.log('client')
+            //
+            //     fetch(props.defaultURL + 'services/client', {
+            //         method: 'GET',
+            //         headers: {
+            //             'Content-Type': 'application/json',
+            //             'Authorization': `Bearer ${token.access}`
+            //         },
+            //     })
+            //         .then(async res => {
+            //             return await res.json()
+            //         })
+            //         .then(data => {
+            //             setClient(data)
+            //         })
+            //         .catch(err =>
+            //             console.log(err))
+            // }
+            // if (!company.length) {
+            //     fetch(props.defaultURL + 'services/company', {
+            //         method: 'GET',
+            //         headers: {
+            //             'Content-Type': 'application/json',
+            //             'Authorization': `Bearer ${token.access}`
+            //         },
+            //     })
+            //         .then(async res => {
+            //             return await res.json()
+            //         })
+            //         .then(data => {
+            //             setCompany(data)
+            //         })
+            //         .catch(err =>
+            //             console.log(err))
+            // }
+            // if (!technic.length) {
+            //     console.log('technic')
+            //     fetch(props.defaultURL + 'services/technic', {
+            //         method: 'GET',
+            //         headers: {
+            //             'Content-Type': 'application/json',
+            //             'Authorization': `Bearer ${token.access}`
+            //         },
+            //     })
+            //         .then(async res => {
+            //             return await res.json()
+            //         })
+            //         .then(data => {
+            //             setTechnic(data)
+            //
+            //         })
+            //         .catch(err =>
+            //             console.log(err))
+            // }
+
+            // if (!engine.length) {
+            //     fetch(props.defaultURL + 'services/engine', {
+            //         method: 'GET',
+            //         headers: {
+            //             'Content-Type': 'application/json',
+            //             'Authorization': `Bearer ${token.access}`
+            //         },
+            //     })
+            //         .then(async res => {
+            //             return await res.json()
+            //         })
+            //         .then(data => {
+            //             setEngine(data)
+            //         })
+            //         .catch(err =>
+            //             console.log(err))
+            // }
+            // if (!transmission.length) {
+            //     fetch(props.defaultURL + 'services/transmission', {
+            //         method: 'GET',
+            //         headers: {
+            //             'Content-Type': 'application/json',
+            //             'Authorization': `Bearer ${token.access}`
+            //         },
+            //     })
+            //         .then(async res => {
+            //             return await res.json()
+            //         })
+            //         .then(data => {
+            //             setTransmission(data)
+            //         })
+            //         .catch(err =>
+            //             console.log(err))
+            // }
+            // if (!drivingbridge.length) {
+            //     fetch(props.defaultURL + 'services/drbridge', {
+            //         method: 'GET',
+            //         headers: {
+            //             'Content-Type': 'application/json',
+            //             'Authorization': `Bearer ${token.access}`
+            //         },
+            //     })
+            //         .then(async res => {
+            //             return await res.json()
+            //         })
+            //         .then(data => {
+            //             setDrivingbridge(data)
+            //         })
+            //         .catch(err =>
+            //             console.log(err))
+            // }
+            // if (!controlledbridge.length) {
+            //     fetch(props.defaultURL + 'services/cobridge', {
+            //         method: 'GET',
+            //         headers: {
+            //             'Content-Type': 'application/json',
+            //             'Authorization': `Bearer ${token.access}`
+            //         },
+            //     })
+            //         .then(async res => {
+            //             return await res.json()
+            //         })
+            //         .then(data => {
+            //             setControlledbridge(data)
+            //         })
+            //         .catch(err =>
+            //             console.log(err))
+            // }
         }
 
     }, [isReady])

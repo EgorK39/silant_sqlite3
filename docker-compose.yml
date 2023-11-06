@@ -5,6 +5,9 @@ services:
     build: ./silant
     command:
       gunicorn silant.wsgi:application --bind 0.0.0.0:8000
+    #      python manage.py runserver 0.0.0.0:8000
+    #    ports:
+    #      - 8000:8000
     expose:
       - 8000
     env_file:
@@ -15,12 +18,29 @@ services:
   nginx:
     build: ./nginx
     ports:
-      - 1337:80
+      - 11337:80
+    #    expose:
+    #      - 11337
     depends_on:
       - backend
     volumes:
       - myStatic:/home/static
+  frontend:
+    build: ./FRONTEND
+    volumes:
+      - frontend:/usr/src/frontend/
+    depends_on:
+      - nginx
+  nginx2:
+    build: ./FRONTEND/nginx
+    volumes:
+      - frontend:/usr/src/frontend/
+    depends_on:
+      - frontend
+    ports:
+      - 11340:80
 volumes:
   myStatic:
+  frontend:
 
 

@@ -5,7 +5,7 @@ import Cars from './Cars';
 import {Outlet, useNavigate} from "react-router-dom";
 import NavBar from "../Header/NavBar";
 import {ThreeDots} from 'react-loader-spinner';
-
+import * as services from "../Services/Services";
 
 export default function CarSearch(props) {
     const [vin, setVin] = useState('');
@@ -52,72 +52,121 @@ export default function CarSearch(props) {
         console.log(isReady)
         if (isReady) {
             console.log(isReady)
-            if (!technic.length) {
-                fetch(props.defaultURL + 'car/user/technic', {
-                    method: 'GET',
-                })
-                    .then(async res => {
-                        return await res.json()
-                    })
-                    .then(data => {
-                        setTechnic(data.technic)
-                    })
-                    .catch(err =>
-                        console.log(err))
-            }
-            if (!engine.length) {
-                fetch(props.defaultURL + 'car/user/engine', {
-                    method: 'GET',
-                })
-                    .then(async res => {
-                        return await res.json()
-                    })
-                    .then(data => {
-                        setEngine(data.engine)
-                    })
-                    .catch(err =>
-                        console.log(err))
-            }
 
-            if (!transmission.length) {
-                fetch(props.defaultURL + 'car/user/transmission', {
-                    method: 'GET',
-                })
-                    .then(async res => {
-                        return await res.json()
-                    })
-                    .then(data => {
-                        setTransmission(data.transmission)
-                    })
-                    .catch(err =>
-                        console.log(err))
-            }
-            if (!drivingbridge.length) {
-                fetch(props.defaultURL + 'car/user/drivingbridge', {
-                    method: 'GET',
-                })
-                    .then(async res => {
-                        return await res.json()
-                    })
-                    .then(data => {
-                        setDrivingbridge(data.drivingbridge)
-                    })
-                    .catch(err =>
-                        console.log(err))
-            }
-            if (!controlledbridge.length) {
-                fetch(props.defaultURL + 'car/user/controlledbridge', {
-                    method: 'GET',
-                })
-                    .then(async res => {
-                        return await res.json()
-                    })
-                    .then(data => {
-                        setControlledbridge(data.controlledbridge)
-                    })
-                    .catch(err =>
-                        console.log(err))
-            }
+
+            const technic1 = services.getService(technic, props.defaultURL, 'technic');
+            console.log(technic1);
+            const engine1 = services.getService(engine, props.defaultURL, 'engine');
+            console.log(engine1);
+            const transmission1 = services.getService(transmission, props.defaultURL, 'transmission');
+            console.log(transmission1);
+            const drivingbridge1 = services.getService(drivingbridge, props.defaultURL, 'drivingbridge');
+            console.log(drivingbridge1);
+            const controlledbridge1 = services.getService(controlledbridge, props.defaultURL, 'controlledbridge');
+            console.log(controlledbridge1);
+            const printService = (service, type) => {
+                service.then((serviceName) => {
+                    switch (type) {
+                        case 'technic':
+                            console.log(serviceName);
+                            setTechnic(serviceName)
+                            break;
+                        case 'engine':
+                            console.log(serviceName);
+                            setEngine(serviceName)
+                            break;
+                        case 'transmission':
+                            console.log(serviceName);
+                            setTransmission(serviceName)
+                            break;
+                        case 'drivingbridge':
+                            console.log(serviceName);
+                            setDrivingbridge(serviceName)
+                            break;
+                        case 'controlledbridge':
+                            console.log(serviceName);
+                            setControlledbridge(serviceName)
+                            break;
+                    }
+
+                });
+            };
+
+
+            printService(technic1, 'technic');
+            printService(engine1, 'engine');
+            printService(transmission1, 'transmission');
+            printService(drivingbridge1, 'drivingbridge');
+            printService(controlledbridge1, 'controlledbridge');
+
+            // if (!technic.length) {
+            //     fetch(props.defaultURL + 'car/user/technic', {
+            //         method: 'GET',
+            //     })
+            //         .then(async res => {
+            //             return await res.json()
+            //         })
+            //         .then(data => {
+            //             setTechnic(data.technic)
+            //         })
+            //         .catch(err =>
+            //             console.log(err))
+            // }
+
+
+            // if (!engine.length) {
+            //     fetch(props.defaultURL + 'car/user/engine', {
+            //         method: 'GET',
+            //     })
+            //         .then(async res => {
+            //             return await res.json()
+            //         })
+            //         .then(data => {
+            //             setEngine(data.engine)
+            //         })
+            //         .catch(err =>
+            //             console.log(err))
+            // }
+
+            // if (!transmission.length) {
+            //     fetch(props.defaultURL + 'car/user/transmission', {
+            //         method: 'GET',
+            //     })
+            //         .then(async res => {
+            //             return await res.json()
+            //         })
+            //         .then(data => {
+            //             setTransmission(data.transmission)
+            //         })
+            //         .catch(err =>
+            //             console.log(err))
+            // }
+            // if (!drivingbridge.length) {
+            //     fetch(props.defaultURL + 'car/user/drivingbridge', {
+            //         method: 'GET',
+            //     })
+            //         .then(async res => {
+            //             return await res.json()
+            //         })
+            //         .then(data => {
+            //             setDrivingbridge(data.drivingbridge)
+            //         })
+            //         .catch(err =>
+            //             console.log(err))
+            // }
+            // if (!controlledbridge.length) {
+            //     fetch(props.defaultURL + 'car/user/controlledbridge', {
+            //         method: 'GET',
+            //     })
+            //         .then(async res => {
+            //             return await res.json()
+            //         })
+            //         .then(data => {
+            //             setControlledbridge(data.controlledbridge)
+            //         })
+            //         .catch(err =>
+            //             console.log(err))
+            // }
             const token = JSON.parse(localStorage.getItem('token'))
             if (token.access) {
                 if (!client.length) {

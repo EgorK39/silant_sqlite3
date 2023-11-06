@@ -2,10 +2,11 @@ import * as React from 'react';
 import '../../styles/Header.scss';
 import Footer from '../Footer/Footer';
 import {Link, Outlet, useNavigate} from 'react-router-dom';
-import {useState, useEffect} from 'react';
-
+// import Favicon from "react-favicon";
+import {useEffect} from 'react';
 
 export default function Header(props) {
+
     const navigate = useNavigate();
     const exitFunc = (e) => {
         localStorage.setItem('token', JSON.stringify(''))
@@ -15,8 +16,16 @@ export default function Header(props) {
     }
 
 
+    useEffect(() => {
+        const link = document.querySelector('link[rel="icon"]');
+        if (link) {
+            link.setAttribute('href', 'icons/favicon.ico');
+        }
+    }, []);
+
     return (
         <>
+            {/*<Favicon url={require('./images/Logotype accent RGB 1.jpg')}/>*/}
             <section className={'myHeader PT-Astra-Sans_Regular'}>
                 <div className={'mainHeaderBlock'}>
                     <div className={'firstHeaderBlock'}>

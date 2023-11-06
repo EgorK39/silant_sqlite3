@@ -18,7 +18,8 @@ class CarsForSimpleUsersSerializer(serializers.ModelSerializer):
             'drivingBridge',
             'drivingBridgeNo',
             'controlledBridge',
-            'controlledBridgeNo'
+            'controlledBridgeNo',
+            'dateOfShipment'
         ]
 
 

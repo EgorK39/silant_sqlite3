@@ -1,5 +1,32 @@
 @import 'index';
 
+
+@mixin dick {
+  .CarsTableDiv {
+    cursor: pointer;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
+
+    span:last-child {
+      position: relative;
+      right: 13px;
+    }
+
+    .CarsArrow {
+      position: relative;
+      height: 20px;
+      top: 12px;
+      left: 10px;
+      border: 1px solid #A9A9A9;
+      box-shadow: 0 0 5px 1px #DCDCDC;
+      border-radius: 5px;
+      //transform: rotate(90deg);
+      transition: cubic-bezier(0.97, 0.2, 0.58, 1) transform .8s;
+    }
+  }
+}
+
 .carNonFiltered {
   background-color: white;
   width: 95%;
@@ -14,6 +41,8 @@
     border-collapse: collapse;
     width: 98%;
     font-size: 13px;
+
+    @include dick;
 
     tr {
       text-align: center;
@@ -77,6 +106,32 @@
     width: 98%;
     font-size: 13px;
 
+    @include dick;
+
+    //.CarsTableDiv {
+    //  cursor: pointer;
+    //  -moz-user-select: none;
+    //  -khtml-user-select: none;
+    //  user-select: none;
+    //
+    //  span:last-child {
+    //    position: relative;
+    //    right: 13px;
+    //  }
+    //
+    //  .CarsArrow {
+    //    position: relative;
+    //    height: 20px;
+    //    top: 12px;
+    //    left: 10px;
+    //    border: 1px solid #A9A9A9;
+    //    box-shadow: 0 0 5px 1px #DCDCDC;
+    //    border-radius: 5px;
+    //    //transform: rotate(90deg);
+    //    transition: cubic-bezier(0.97, 0.2, 0.58, 1) transform .8s;
+    //  }
+    //}
+
     tr {
       text-align: center;
       position: relative;
@@ -136,6 +191,8 @@
         table-layout: fixed;
         border-collapse: collapse;
         width: 98%;
+
+        @include dick;
 
         tr {
           text-align: center;

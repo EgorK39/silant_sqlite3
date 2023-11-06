@@ -2,6 +2,7 @@ import * as React from 'react';
 import {Link, useNavigate, useLocation} from "react-router-dom";
 import {useEffect, useState} from "react";
 import '../../styles/Guide.scss';
+import * as service from "../Services/ServicesForManager";
 
 export default function Guide(props) {
 
@@ -65,250 +66,304 @@ export default function Guide(props) {
             if (props.groupName == 'manager') {
                 const token = JSON.parse(localStorage.getItem('token'))
                 if (token.access) {
+                    const technic1 = service.getServices(technic, props.defaultURL, token.access, 'technic');
+                    const engine1 = service.getServices(engine, props.defaultURL, token.access, 'engine');
+                    const transmission1 = service.getServices(transmission, props.defaultURL, token.access, 'transmission');
+                    const drivingbridge1 = service.getServices(drbridge, props.defaultURL, token.access, 'drivingbridge');
+                    const controlledbridge1 = service.getServices(cobridge, props.defaultURL, token.access, 'controlledbridge');
+                    const type1 = service.getServices(type, props.defaultURL, token.access, 'type');
+                    const rejection1 = service.getServices(rejection, props.defaultURL, token.access, 'rejection');
+                    const recovery1 = service.getServices(recovery, props.defaultURL, token.access, 'recovery');
 
-
-                    if (!technic.length) {
-                        fetch(props.defaultURL + 'services/technic', {
-                            method: 'GET',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'Authorization': `Bearer ${token.access}`
-                            },
-                        })
-                            .then(async res => {
-                                console.log('auth')
-                                if (res.status != 200) {
-                                    console.log(res)
-                                    console.log(res.status)
-                                    console.log(typeof res.status)
-                                    dropPassword()
-                                } else {
-                                    // setClient(await res.json());
-                                    // console.log(res)
-                                    return await res.json()
+                    const printService = (service, type) => {
+                        // console.log(service);
+                        service.then((serviceName) => {
+                            // console.log(serviceName);
+                            if (serviceName !== false) {
+                                switch (type) {
+                                    case 'technic':
+                                        setTechnic(serviceName)
+                                        break;
+                                    case 'engine':
+                                        setEngine(serviceName)
+                                        break;
+                                    case 'transmission':
+                                        setTransmission(serviceName)
+                                        break;
+                                    case 'drivingbridge':
+                                        setDrbridge(serviceName)
+                                        break;
+                                    case 'controlledbridge':
+                                        setCobridge(serviceName)
+                                        break;
+                                    case 'type':
+                                        setType(serviceName)
+                                        break;
+                                    case 'rejection':
+                                        setRejection(serviceName)
+                                        break;
+                                    case 'recovery':
+                                        setRecovery(serviceName)
+                                        break;
                                 }
-                            })
-                            .then(data => {
-                                console.log(data)
-                                setTechnic(data);
+                            } else {
+                                dropPassword()
+                            }
+                        });
+                    };
 
-                            })
+                    printService(technic1, 'technic');
+                    printService(engine1, 'engine');
+                    printService(transmission1, 'transmission');
+                    printService(drivingbridge1, 'drivingbridge');
+                    printService(controlledbridge1, 'controlledbridge');
+                    printService(type1, 'type');
+                    printService(rejection1, 'rejection');
+                    printService(recovery1, 'recovery');
 
-                            .catch(err =>
-                                console.log(err))
-                    }
 
-                    if (!engine.length) {
-                        fetch(props.defaultURL + 'services/engine', {
-                            method: 'GET',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'Authorization': `Bearer ${token.access}`
-                            },
-                        })
-                            .then(async res => {
-                                console.log('auth')
-                                if (res.status != 200) {
-                                    console.log(res)
-                                    console.log(res.status)
-                                    console.log(typeof res.status)
-                                    dropPassword()
-                                } else {
-                                    // setClient(await res.json());
-                                    // console.log(res)
-                                    return await res.json()
-                                }
-                            })
-                            .then(data => {
-                                console.log(data)
-                                setEngine(data);
-
-                            })
-
-                            .catch(err =>
-                                console.log(err))
-                    }
-                    if (!transmission.length) {
-                        fetch(props.defaultURL + 'services/transmission', {
-                            method: 'GET',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'Authorization': `Bearer ${token.access}`
-                            },
-                        })
-                            .then(async res => {
-                                console.log('auth')
-                                if (res.status != 200) {
-                                    console.log(res)
-                                    console.log(res.status)
-                                    console.log(typeof res.status)
-                                    dropPassword()
-                                } else {
-                                    // setClient(await res.json());
-                                    // console.log(res)
-                                    return await res.json()
-                                }
-                            })
-                            .then(data => {
-                                console.log(data)
-                                setTransmission(data);
-
-                            })
-
-                            .catch(err =>
-                                console.log(err))
-                    }
-
-                    if (!drbridge.length) {
-                        fetch(props.defaultURL + 'services/drbridge', {
-                            method: 'GET',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'Authorization': `Bearer ${token.access}`
-                            },
-                        })
-                            .then(async res => {
-                                console.log('auth')
-                                if (res.status != 200) {
-                                    console.log(res)
-                                    console.log(res.status)
-                                    console.log(typeof res.status)
-                                    dropPassword()
-                                } else {
-                                    // setClient(await res.json());
-                                    // console.log(res)
-                                    return await res.json()
-                                }
-                            })
-                            .then(data => {
-                                console.log(data)
-                                setDrbridge(data);
-
-                            })
-
-                            .catch(err =>
-                                console.log(err))
-                    }
-                    if (!cobridge.length) {
-                        fetch(props.defaultURL + 'services/cobridge', {
-                            method: 'GET',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'Authorization': `Bearer ${token.access}`
-                            },
-                        })
-                            .then(async res => {
-                                console.log('auth')
-                                if (res.status != 200) {
-                                    console.log(res)
-                                    console.log(res.status)
-                                    console.log(typeof res.status)
-                                    dropPassword()
-                                } else {
-                                    // setClient(await res.json());
-                                    // console.log(res)
-                                    return await res.json()
-                                }
-                            })
-                            .then(data => {
-                                console.log(data)
-                                setCobridge(data);
-
-                            })
-
-                            .catch(err =>
-                                console.log(err))
-                    }
-                    if (!type.length) {
-                        fetch(props.defaultURL + 'services/type', {
-                            method: 'GET',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'Authorization': `Bearer ${token.access}`
-                            },
-                        })
-                            .then(async res => {
-                                console.log('auth')
-                                if (res.status != 200) {
-                                    console.log(res)
-                                    console.log(res.status)
-                                    console.log(typeof res.status)
-                                    dropPassword()
-                                } else {
-                                    // setClient(await res.json());
-                                    // console.log(res)
-                                    return await res.json()
-                                }
-                            })
-                            .then(data => {
-                                console.log(data)
-                                setType(data);
-
-                            })
-
-                            .catch(err =>
-                                console.log(err))
-                    }
-                    if (!rejection.length) {
-                        fetch(props.defaultURL + 'services/rejection', {
-                            method: 'GET',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'Authorization': `Bearer ${token.access}`
-                            },
-                        })
-                            .then(async res => {
-                                console.log('auth')
-                                if (res.status != 200) {
-                                    console.log(res)
-                                    console.log(res.status)
-                                    console.log(typeof res.status)
-                                    dropPassword()
-                                } else {
-                                    // setClient(await res.json());
-                                    // console.log(res)
-                                    return await res.json()
-                                }
-                            })
-                            .then(data => {
-                                console.log(data)
-                                setRejection(data);
-
-                            })
-
-                            .catch(err =>
-                                console.log(err))
-                    }
-                    if (!recovery.length) {
-                        fetch(props.defaultURL + 'services/recovery', {
-                            method: 'GET',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'Authorization': `Bearer ${token.access}`
-                            },
-                        })
-                            .then(async res => {
-                                console.log('auth')
-                                if (res.status != 200) {
-                                    console.log(res)
-                                    console.log(res.status)
-                                    console.log(typeof res.status)
-                                    dropPassword()
-                                } else {
-                                    // setClient(await res.json());
-                                    // console.log(res)
-                                    return await res.json()
-                                }
-                            })
-                            .then(data => {
-                                console.log(data)
-                                setRecovery(data);
-
-                            })
-
-                            .catch(err =>
-                                console.log(err))
-                    }
+                    // if (!technic.length) {
+                    //     fetch(props.defaultURL + 'services/technic', {
+                    //         method: 'GET',
+                    //         headers: {
+                    //             'Content-Type': 'application/json',
+                    //             'Authorization': `Bearer ${token.access}`
+                    //         },
+                    //     })
+                    //         .then(async res => {
+                    //             console.log('auth')
+                    //             if (res.status != 200) {
+                    //                 console.log(res)
+                    //                 console.log(res.status)
+                    //                 console.log(typeof res.status)
+                    //                 dropPassword()
+                    //             } else {
+                    //                 // setClient(await res.json());
+                    //                 // console.log(res)
+                    //                 return await res.json()
+                    //             }
+                    //         })
+                    //         .then(data => {
+                    //             console.log(data)
+                    //             setTechnic(data);
+                    //
+                    //         })
+                    //
+                    //         .catch(err =>
+                    //             console.log(err))
+                    // }
+                    //
+                    // if (!engine.length) {
+                    //     fetch(props.defaultURL + 'services/engine', {
+                    //         method: 'GET',
+                    //         headers: {
+                    //             'Content-Type': 'application/json',
+                    //             'Authorization': `Bearer ${token.access}`
+                    //         },
+                    //     })
+                    //         .then(async res => {
+                    //             console.log('auth')
+                    //             if (res.status != 200) {
+                    //                 console.log(res)
+                    //                 console.log(res.status)
+                    //                 console.log(typeof res.status)
+                    //                 dropPassword()
+                    //             } else {
+                    //                 // setClient(await res.json());
+                    //                 // console.log(res)
+                    //                 return await res.json()
+                    //             }
+                    //         })
+                    //         .then(data => {
+                    //             console.log(data)
+                    //             setEngine(data);
+                    //
+                    //         })
+                    //
+                    //         .catch(err =>
+                    //             console.log(err))
+                    // }
+                    // if (!transmission.length) {
+                    //     fetch(props.defaultURL + 'services/transmission', {
+                    //         method: 'GET',
+                    //         headers: {
+                    //             'Content-Type': 'application/json',
+                    //             'Authorization': `Bearer ${token.access}`
+                    //         },
+                    //     })
+                    //         .then(async res => {
+                    //             console.log('auth')
+                    //             if (res.status != 200) {
+                    //                 console.log(res)
+                    //                 console.log(res.status)
+                    //                 console.log(typeof res.status)
+                    //                 dropPassword()
+                    //             } else {
+                    //                 // setClient(await res.json());
+                    //                 // console.log(res)
+                    //                 return await res.json()
+                    //             }
+                    //         })
+                    //         .then(data => {
+                    //             console.log(data)
+                    //             setTransmission(data);
+                    //
+                    //         })
+                    //
+                    //         .catch(err =>
+                    //             console.log(err))
+                    // }
+                    //
+                    // if (!drbridge.length) {
+                    //     fetch(props.defaultURL + 'services/drbridge', {
+                    //         method: 'GET',
+                    //         headers: {
+                    //             'Content-Type': 'application/json',
+                    //             'Authorization': `Bearer ${token.access}`
+                    //         },
+                    //     })
+                    //         .then(async res => {
+                    //             console.log('auth')
+                    //             if (res.status != 200) {
+                    //                 console.log(res)
+                    //                 console.log(res.status)
+                    //                 console.log(typeof res.status)
+                    //                 dropPassword()
+                    //             } else {
+                    //                 // setClient(await res.json());
+                    //                 // console.log(res)
+                    //                 return await res.json()
+                    //             }
+                    //         })
+                    //         .then(data => {
+                    //             console.log(data)
+                    //             setDrbridge(data);
+                    //
+                    //         })
+                    //
+                    //         .catch(err =>
+                    //             console.log(err))
+                    // }
+                    // if (!cobridge.length) {
+                    //     fetch(props.defaultURL + 'services/cobridge', {
+                    //         method: 'GET',
+                    //         headers: {
+                    //             'Content-Type': 'application/json',
+                    //             'Authorization': `Bearer ${token.access}`
+                    //         },
+                    //     })
+                    //         .then(async res => {
+                    //             console.log('auth')
+                    //             if (res.status != 200) {
+                    //                 console.log(res)
+                    //                 console.log(res.status)
+                    //                 console.log(typeof res.status)
+                    //                 dropPassword()
+                    //             } else {
+                    //                 // setClient(await res.json());
+                    //                 // console.log(res)
+                    //                 return await res.json()
+                    //             }
+                    //         })
+                    //         .then(data => {
+                    //             console.log(data)
+                    //             setCobridge(data);
+                    //
+                    //         })
+                    //
+                    //         .catch(err =>
+                    //             console.log(err))
+                    // }
+                    // if (!type.length) {
+                    //     fetch(props.defaultURL + 'services/type', {
+                    //         method: 'GET',
+                    //         headers: {
+                    //             'Content-Type': 'application/json',
+                    //             'Authorization': `Bearer ${token.access}`
+                    //         },
+                    //     })
+                    //         .then(async res => {
+                    //             console.log('auth')
+                    //             if (res.status != 200) {
+                    //                 console.log(res)
+                    //                 console.log(res.status)
+                    //                 console.log(typeof res.status)
+                    //                 dropPassword()
+                    //             } else {
+                    //                 // setClient(await res.json());
+                    //                 // console.log(res)
+                    //                 return await res.json()
+                    //             }
+                    //         })
+                    //         .then(data => {
+                    //             console.log(data)
+                    //             setType(data);
+                    //
+                    //         })
+                    //
+                    //         .catch(err =>
+                    //             console.log(err))
+                    // }
+                    // if (!rejection.length) {
+                    //     fetch(props.defaultURL + 'services/rejection', {
+                    //         method: 'GET',
+                    //         headers: {
+                    //             'Content-Type': 'application/json',
+                    //             'Authorization': `Bearer ${token.access}`
+                    //         },
+                    //     })
+                    //         .then(async res => {
+                    //             console.log('auth')
+                    //             if (res.status != 200) {
+                    //                 console.log(res)
+                    //                 console.log(res.status)
+                    //                 console.log(typeof res.status)
+                    //                 dropPassword()
+                    //             } else {
+                    //                 // setClient(await res.json());
+                    //                 // console.log(res)
+                    //                 return await res.json()
+                    //             }
+                    //         })
+                    //         .then(data => {
+                    //             console.log(data)
+                    //             setRejection(data);
+                    //
+                    //         })
+                    //
+                    //         .catch(err =>
+                    //             console.log(err))
+                    // }
+                    // if (!recovery.length) {
+                    //     fetch(props.defaultURL + 'services/recovery', {
+                    //         method: 'GET',
+                    //         headers: {
+                    //             'Content-Type': 'application/json',
+                    //             'Authorization': `Bearer ${token.access}`
+                    //         },
+                    //     })
+                    //         .then(async res => {
+                    //             console.log('auth')
+                    //             if (res.status != 200) {
+                    //                 console.log(res)
+                    //                 console.log(res.status)
+                    //                 console.log(typeof res.status)
+                    //                 dropPassword()
+                    //             } else {
+                    //                 // setClient(await res.json());
+                    //                 // console.log(res)
+                    //                 return await res.json()
+                    //             }
+                    //         })
+                    //         .then(data => {
+                    //             console.log(data)
+                    //             setRecovery(data);
+                    //
+                    //         })
+                    //
+                    //         .catch(err =>
+                    //             console.log(err))
+                    // }
                 }
             }
         }

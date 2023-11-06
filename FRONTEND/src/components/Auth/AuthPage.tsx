@@ -105,6 +105,12 @@ export default function AuthPage(props) {
             .catch(err =>
                 console.log(err))
     }
+    const handleKeyDown = (event) => {
+        if (btnReady && event.key === 'Enter') {
+            sendReq(event);
+        }
+    }
+
     return (
         <div className="modalBackground">
             <div className="modalActive PT-Astra-Sans_Bold">
@@ -144,6 +150,9 @@ export default function AuthPage(props) {
                                type={"password"}
                                onChange={event => {
                                    setDataFunc(event.target)
+                               }}
+                               onKeyDown={event => {
+                                   handleKeyDown(event)
                                }}
 
                         />

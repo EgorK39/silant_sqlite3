@@ -1,0 +1,17 @@
+#version: '3.3'
+#
+#services:
+#  frontend:
+#    build: .
+#    volumes:
+#      - frontend:/usr/src/frontend/
+#  nginx:
+#    build: ./nginx
+#    volumes:
+#      - frontend:/usr/src/frontend/
+#    depends_on:
+#      - frontend
+#    ports:
+#      - 11340:80
+#volumes:
+#  frontend:

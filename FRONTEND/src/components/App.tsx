@@ -29,15 +29,18 @@ import UpdateRec from "./Reclamation/UpdateRec";
 import Guide from "./ForManager/Guide";
 import Create from "./ForManager/Services/Create";
 
+import * as service from "./Services/Services";
+
+
 export default function App(props) {
 
-//     const defaultURL = 'http://127.0.0.1:8000/api/v1/'
-    const defaultURL = 'http://127.0.0.1:1337/api/v1/'
+    // const defaultURL = 'http://127.0.0.1:8000/api/v1/'
+    const defaultURL = 'http://localhost:11337/api/v1/'
 
 
     const [isAuthenticated, setIsAuthenticated] = useState(false)
-    const [userName, setUserName] = useState<string>('')
-    const [groupName, setGroupName] = useState<string>('')
+    const [userName, setUserName] = useState<any>('');
+    const [groupName, setGroupName] = useState<any>('');
 
     const navigate = useNavigate();
 
@@ -68,40 +71,65 @@ export default function App(props) {
         navigate(0)
     }
     useEffect(() => {
-        const token = JSON.parse(localStorage.getItem('token'))
-        if (token) {
-            if (token.access) {
-                console.log('auth')
-                fetch(`${defaultURL}car/getname`,
-                    {
-                        method: 'GET',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${token.access}`
-                        },
-                    })
-                    .then(async res => {
-                        if (res.status != 200) {
-                            console.log(res)
-                            console.log(res.status)
-                            console.log(typeof res.status)
-                            dropPassword()
-                        } else {
-                            console.log(res)
-                            return await res.json();
-                        }
-                    })
-                    .then(data => {
-                        console.log(data.name)
-                        setUserName(data.name)
-                        setGroupName(data.group)
-                    })
 
-                    .catch(err =>
-                        console.log(err))
+        const token = JSON.parse(localStorage.getItem('token'))
+
+        const userName = service.getName(token, defaultURL);
+
+        console.log(userName)
+        const gget = async () => {
+            const res = await userName;
+            console.log(res);
+            if (res) {
+                if (res['dropPass'] == true) {
+                    dropPassword()
+                } else {
+                    setUserName(res['userName'])
+                    setGroupName(res['groupName'])
+                }
+                console.log(res['userName']);
+                console.log(res['groupName']);
+                console.log(res['dropPass']);
             }
+
+
         }
+        gget();
+
+        // if (token) {
+        //     if (token.access) {
+        //         console.log('auth')
+        //         fetch(`${defaultURL}car/getname`,
+        //             {
+        //                 method: 'GET',
+        //                 headers: {
+        //                     'Content-Type': 'application/json',
+        //                     'Authorization': `Bearer ${token.access}`
+        //                 },
+        //             })
+        //             .then(async res => {
+        //                 if (res.status != 200) {
+        //                     console.log(res)
+        //                     console.log(res.status)
+        //                     console.log(typeof res.status)
+        //                     dropPassword()
+        //                 } else {
+        //                     console.log(res)
+        //                     return await res.json();
+        //                 }
+        //             })
+        //             .then(data => {
+        //                 console.log(data.name)
+        //                 setUserName(data.name)
+        //                 setGroupName(data.group)
+        //             })
+        //
+        //             .catch(err =>
+        //                 console.log(err))
+        //     }
+        // }
     }, [])
+
 
     return (
         <>

@@ -2,7 +2,7 @@ const path = require('path');
 const Dotenv = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
-
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     devtool: 'inline-source-map',
@@ -23,6 +23,11 @@ module.exports = {
         }),
         new webpack.ProvidePlugin({
             Buffer: ['buffer', 'Buffer'],
+        }),
+        new CopyPlugin({
+            patterns: [
+                {from: path.join(__dirname, "src/favicon.ico"), to: 'icons'},
+            ],
         }),
     ],
     resolve: {
